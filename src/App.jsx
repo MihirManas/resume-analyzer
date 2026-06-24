@@ -121,7 +121,9 @@ export default function App() {
     } catch (error) {
       console.error(error);
       const msg = error.message || 'Something went wrong.';
-      if (msg.includes('high demand') || msg.includes('unavailable') || msg.includes('busy') || msg.includes('503') || msg.includes('overload')) {
+      if (msg.includes('429') || msg.includes('RESOURCE_EXHAUSTED') || msg.includes('quota')) {
+        setErrorMessage('Sorry! Our AI is feeling thirsty and needs some water. Coming back......😉');
+      } else if (msg.includes('high demand') || msg.includes('unavailable') || msg.includes('busy') || msg.includes('503') || msg.includes('overload')) {
         setErrorMessage('The AI service is currently experiencing high demand. Please wait a moment and try again.');
       } else {
         setErrorMessage(msg);
